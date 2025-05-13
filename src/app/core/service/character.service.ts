@@ -10,6 +10,6 @@ export class CharacterService {
   constructor(private api: ApiService) { }
 
   getCharacters(): Observable<any> {
-    return this.api.get<any>(`character`)
+    return this.api.get<any>(`character`);
   }
 }
