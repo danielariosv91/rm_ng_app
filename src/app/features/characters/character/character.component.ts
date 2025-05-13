@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CharacterService } from 'src/app/core/service/character.service';
 
 @Component({
   selector: 'app-character',
@@ -10,6 +12,18 @@ import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 })
 export class CharacterComponent implements OnInit {
 
-  ngOnInit(): void { }
+  character: any;
 
+  constructor(
+    private route: ActivatedRoute,
+    private characterService: CharacterService,
+  ) { }
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    this.characterService.getOneCharacter(id).subscribe(item => {
+      this.character = item
+    })
+  }
 }

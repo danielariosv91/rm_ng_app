@@ -16,4 +16,8 @@ export class CharacterService {
   getMainCharacters(): Observable<any> {
     return this.api.get<any>(`character/1,2,3`);
   }
+
+  getOneCharacter(id: string): Observable<any> {
+    return this.api.get<any>(`character/${id}`);
+  }
 }
