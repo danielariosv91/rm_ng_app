@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, type OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, type OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from 'src/app/core/service/character.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../../../components/common/dialog/dialog.component';
 
 @Component({
   selector: 'app-character',
@@ -17,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class CharacterComponent implements OnInit {
 
   character: any;
+  dialog = inject(MatDialog);
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +33,14 @@ export class CharacterComponent implements OnInit {
     this.characterService.getOneCharacter(id).subscribe(item => {
       this.character = item
       this.cdRef.markForCheck()
+    })
+  }
+
+  onShowModal() {
+    this.dialog.open(DialogComponent, {
+      data: {
+        animal: 'panda'
+      }
     })
   }
 }

@@ -12,7 +12,7 @@
           <section>
             <div class="example-button-row">
               <button class="mx-1 my-1" *ngFor="let episode of character.episode; index as i"
-                mat-raised-button>{{episode.ep}}</button>
+                mat-raised-button (click)="onShowModal()">{{episode.ep}}</button>
             </div>
           </section>
         </div>
