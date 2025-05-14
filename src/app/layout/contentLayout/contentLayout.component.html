@@ -1,14 +1,15 @@
 <!-- layout.component.html -->
-<app-navbar>Navbar</app-navbar>
-<ul class="list-group">
-  <li class="list-group-item">An item</li>
-  <li class="list-group-item">A second item</li>
-  <li class="list-group-item">A third item</li>
-  <li class="list-group-item">A fourth item</li>
-  <li class="list-group-item">And a fifth one</li>
-</ul>
-
-<div class="main-content">
-  <router-outlet></router-outlet>
+<app-navbar></app-navbar>
+<div class="d-flex navigation">
+  <div class="col-3">
+    <ul class="list-group">
+      <li class="list-group-item">Home</li>
+      <li class="list-group-item">Characters</li>
+    </ul>
+  </div>
+  <div class="col">
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
-<footer>Footer</footer>

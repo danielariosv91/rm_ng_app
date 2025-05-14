@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, type OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from 'src/app/core/service/character.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-character',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule, MatDividerModule, MatButtonModule],
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,6 +21,7 @@ export class CharacterComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private characterService: CharacterService,
+    private cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +29,7 @@ export class CharacterComponent implements OnInit {
 
     this.characterService.getOneCharacter(id).subscribe(item => {
       this.character = item
+      this.cdRef.markForCheck()
     })
   }
 }

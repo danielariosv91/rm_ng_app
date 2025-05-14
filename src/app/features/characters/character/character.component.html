@@ -1,18 +1,22 @@
-<section class="py-5 px-5">
-  <div class="card">
+<section class="px-5">
+  <div *ngIf="character" class="card">
     <div class="card-body">
       <div class="d-flex justify-content-around">
         <div class="col-4 profile">
           <img src="{{character.image}}" class="rounded d-block" alt="{{character.name}}">
-          <p>{{character.name}}</p>
+          <h4 class="mt-3">{{character.name}}</h4>
 
           <span> {{character.origin.name}} | {{character.status}} | {{character.species}}</span>
         </div>
-        <div class="col-4 chapters">
-          <span class="mx-1" *ngFor="let episode of character.episode; index as i">{{episode.ep}}</span>
+        <div class="col chapters">
+          <section>
+            <div class="example-button-row">
+              <button class="mx-1 my-1" *ngFor="let episode of character.episode; index as i"
+                mat-raised-button>{{episode.ep}}</button>
+            </div>
+          </section>
         </div>
       </div>
     </div>
   </div>
 </section>
-
