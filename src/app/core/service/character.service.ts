@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,20 @@ export class CharacterService {
   }
 
   getOneCharacter(id: string): Observable<any> {
-    return this.api.get<any>(`character/${id}`);
+    return this.api.get<any>(`character/${id}`).pipe(
+      map((item: any) => {
+        return {
+          ...item,
+          episode: item.episode.map((e: any) => {
+            const episodeId = e.split('/').pop();
+            return {
+              url: e,
+              ep: parseInt(episodeId, 10)
+            };
+          })
+        };
+      })
+    );
   }
+
 }

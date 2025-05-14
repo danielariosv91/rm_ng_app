@@ -1,15 +1,18 @@
-<div class="card">
-  <div class="card-body">
-    <div class="flex">
-      <div class="profile">
-        <img src="{{character.image}}" class="rounded d-block" alt="{{character.name}}">
-        <p>{{character.name}}</p>
+<section class="py-5 px-5">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex justify-content-around">
+        <div class="col-4 profile">
+          <img src="{{character.image}}" class="rounded d-block" alt="{{character.name}}">
+          <p>{{character.name}}</p>
 
-        <span> {{character.origin.name}} | {{character.status}} | {{character.species}}</span>
-      </div>
-      <div class="chapters">
-
+          <span> {{character.origin.name}} | {{character.status}} | {{character.species}}</span>
+        </div>
+        <div class="col-4 chapters">
+          <span class="mx-1" *ngFor="let episode of character.episode; index as i">{{episode.ep}}</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+

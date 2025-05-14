@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from 'src/app/core/service/character.service';
@@ -5,7 +6,7 @@ import { CharacterService } from 'src/app/core/service/character.service';
 @Component({
   selector: 'app-character',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
